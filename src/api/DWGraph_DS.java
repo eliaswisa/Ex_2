@@ -1,8 +1,16 @@
 package api;
 
+import javax.print.attribute.HashAttributeSet;
 import java.util.Collection;
+import java.util.HashMap;
 
-public class DWGraph_DS implements directed_weighted_graph{
+public class DWGraph_DS implements directed_weighted_graph {
+    private HashMap<Integer, node_data> nodes;
+    private HashMap<Integer, HashMap<Integer, edge_data>> edges;
+    private int edge_counter = 0;
+    private int MC = 0;
+
+
     @Override
     public node_data getNode(int key) {
         return null;

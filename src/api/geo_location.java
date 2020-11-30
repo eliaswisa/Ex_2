@@ -6,5 +6,6 @@ public interface geo_location {
     public double x();
     public double y();
     public double z();
+
     public double distance(geo_location g);
 }

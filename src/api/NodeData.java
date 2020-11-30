@@ -14,10 +14,11 @@ public class NodeData implements node_data {
     public NodeData() {
         this.location = Point3D.ORIGIN;
         this.key = id;
+        this.id++;
         this.weight = Double.MAX_VALUE;
         this.tag = 0;
         this.info = "";
-        this.id++;
+
     }
 
     public NodeData(GeoLocation location) {
