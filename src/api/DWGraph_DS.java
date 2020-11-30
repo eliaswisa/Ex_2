@@ -42,7 +42,22 @@ public class DWGraph_DS implements directed_weighted_graph {
 
     @Override
     public void connect(int src, int dest, double w) {
-
+        if(this.nodes.get(src)==null||this.nodes.get(dest)==null){return;}
+        EdgeData newEdge=new EdgeData(src, dest, w);
+        if(this.nodes.get(src)!=null&&this.nodes.get(dest)!=null) {
+            if (this.edges.get(src) == null) {
+                this.edges.put(src, new HashMap<Integer, edge_data>());
+                this.edges.get(src).put(dest, newEdge);
+                edge_counter++;
+                MC++;
+            } else {
+                if (edges.get(src).get(dest) == null) {
+                    this.edges.get(src).put(dest, newEdge);
+                    edge_counter++;
+                    MC++;
+                }
+            }
+        }
     }
 
     @Override
