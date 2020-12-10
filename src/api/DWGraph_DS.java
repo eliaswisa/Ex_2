@@ -44,6 +44,7 @@ public class DWGraph_DS implements directed_weighted_graph {
     /**
      * adds a new node to the graph with the given node_data.
      * Note: this method should run in O(1) time.
+     *
      * @param n
      */
     @Override
@@ -96,6 +97,18 @@ public class DWGraph_DS implements directed_weighted_graph {
             return edges.get(node_id).values();
 
         return null;
+    }
+
+    // TODO: 11/12/2020 check if i did it in the right way,it should take all the edge_data elements from all the hash map
+    public Collection<edge_data> getE() {
+        Collection<Integer> allEdgesSrcKeyList = edges.keySet();
+        Collection<edge_data> allGeneralEdgesCollection = null;
+        for (int key : allEdgesSrcKeyList) {
+            for (int key2 : this.edges.get(key).keySet()) {
+                allGeneralEdgesCollection.add(edges.get(key).get(key2));
+            }
+        }
+        return allGeneralEdgesCollection;
     }
 
     @Override
@@ -154,6 +167,7 @@ public class DWGraph_DS implements directed_weighted_graph {
         //return nodes_counter;
         return this.nodes.size();
     }
+
     @Override
     public int edgeSize() {
         return edge_counter;

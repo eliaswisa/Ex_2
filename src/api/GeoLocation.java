@@ -26,6 +26,12 @@ public class GeoLocation implements geo_location {
         return Math.sqrt(Math.pow(g.x() - this.x, 2) + Math.pow(g.y() - this.y, 2) + Math.pow(g.z() - this.z, 2));
     }
 
+    public GeoLocation(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     /**
      * copy constructor
      *
