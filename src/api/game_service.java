@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author boaz.benmoshe
  *
  */
-public interface game_service extends Serializable{	
+public interface game_service extends Serializable{
 	/**
 	 * Returns a JSON representation of graph as a JSON String.
 	 * @return
