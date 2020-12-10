@@ -1,6 +1,6 @@
 
 # EX1
-oop university course assingment -weighted undirectional graph
+oop university course assingment -weighted directional graph
 
 **authors:**  
 Elia Swisa & Elior Gueta
