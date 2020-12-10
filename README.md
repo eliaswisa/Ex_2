@@ -7,7 +7,8 @@ Elia Swisa & Elior Gueta
 
 **summery:**
 
-the project focus an pokemon game that built on weighted directional graph data structure that has several classes.
+the project focus an pokemon 
+that built on weighted directional graph data structure that has several classes.
 
 
 NodeData-who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
@@ -20,7 +21,9 @@ DWGraph_Algo-who represents algorithm and save and load methods that can save an
 
 GeoLocation-describe an geographic location on the graph (basicly an 3d point).
 
-EdgeLocation-
+EdgeLocation-this class represents a position on the graph
+
+EX2-This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
 
 
@@ -48,7 +51,27 @@ getLocation-gets 3d location point
 
 setLocation-sets 3d location point
 
-*constructors getters and setters defined as well according to need
+*constructors getters and setters defined as well according to need*
+
+***EdgeData class methods***
+
+*constructors*
+
+**getsrc**-getts the source  field
+
+**getDest** -gets the destination field
+
+**getWeight**- gets the weight field
+
+**getInfo**-gets info from the edge as String
+
+**setInfo**-sets the info
+
+**getTag**-gets the tag
+
+**setTag**-sets the tag
+.
+
 
 ***DWGraph_DS class methods:***
 
@@ -99,3 +122,12 @@ setLocation-sets 3d location point
 *load**-loads the graph from file by streaming all his data after implementing serilizable
 
 *djikstra* -an side function that knows how to finds the shortest path using djikstra principle
+
+
+***GeoLocation class methods*** 
+
+**distance**- calculating the distance between two 3d points 
+.
+ 
+***EX2 class methods***
+
