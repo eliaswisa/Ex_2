@@ -123,7 +123,7 @@ setLocation-sets 3d location point
 **load**-loads the graph from file by streaming all his data after implementing serilizable
 
 **djikstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
-
+![](https://github.com/eliaswisa/Ex_2/blob/master/wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif)
 
 ***GeoLocation class methods*** 
 
