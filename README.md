@@ -124,7 +124,11 @@ setLocation-sets 3d location point
 
 **djikstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
 
-<img src="2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
+<img src="wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
+
+
+
+
 ***GeoLocation class methods*** 
 
 **distance**- calculating the distance between two 3d points 
