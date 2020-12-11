@@ -1,4 +1,8 @@
 
+<img src="image-123.png">
+
+
+
 # EX1
 oop university course assingment -weighted directional graph
 
