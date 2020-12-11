@@ -7,8 +7,8 @@ Elia Swisa & Elior Gueta
 
 **summery:**
 
-the project focus an pokemon 
-that built on weighted directional graph data structure that has several classes.
+the project focused on pokemon game-agent who needs to catch the pokemons after they popped up on the edges of the graph in the shortest time as can. 
+that graph built on data stracture of weighted directional graph. that project has several classes.
 
 
 NodeData-who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
@@ -25,6 +25,7 @@ EdgeLocation-this class represents a position on the graph
 
 EX2-This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
+DW_JsonGraphDeserial-Abstract class that defines API used by ObjectMapper (and other chained JsonDeserializers too) to deserialize Objects of arbitrary types from JSON, using provided JsonParser.
 
 
 ***NodeData class methods:***
@@ -117,17 +118,16 @@ setLocation-sets 3d location point
 
 **isConnected**-algorithm that check if the graph is connected by connected graph definition
 
-**save**-saves the graph to file by streaming all his data after implementing serilizable 
+**save**-saves the graph to file by streaming all his data after implementing serilizable and google Gson
 
-*load**-loads the graph from file by streaming all his data after implementing serilizable
+**load**-loads the graph from file by streaming all his data after implementing serilizable
 
-*djikstra* -an side function that knows how to finds the shortest path using djikstra principle
+**djikstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
 
 
 ***GeoLocation class methods*** 
 
 **distance**- calculating the distance between two 3d points 
-.
- 
-***EX2 class methods***
+
+***EX2 class methods***-
 
