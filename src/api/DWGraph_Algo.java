@@ -14,19 +14,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/***
+ * class of group of algorithms that used on this graph
+ */
 public class DWGraph_Algo implements dw_graph_algorithms {
     private directed_weighted_graph graph;
     private HashMap<Integer, Double> dist;
     private HashMap<Integer, Integer> prev;
 
-
+    /***
+     * Init the graph on which this set of algorithms operates on.
+     * @param g graph to initiate
+     */
     @Override
     public void init(directed_weighted_graph g) {
         this.graph = g;
     }
 
     /**
-     * copy constructor
+     * default constructor
      */
     public DWGraph_Algo() {
         graph = new DWGraph_DS();
@@ -37,11 +43,19 @@ public class DWGraph_Algo implements dw_graph_algorithms {
 
     }
 
+    /***
+     *Return the underlying graph of which this class works.
+     * @return directed_weighted_graph
+     */
     @Override
     public directed_weighted_graph getGraph() {
         return this.graph;
     }
 
+    /***
+     *deep copy of this weighted graph.
+     * @return directed_weighted_graph
+     */
     @Override
     public directed_weighted_graph copy() {
         if (graph == null)
@@ -50,6 +64,11 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return d_w_g;
     }
 
+    /***
+     *Returns true if and only if (iff) there is a valid path from each node to each
+     *      * other node. NOTE: assume directional graph (all n*(n-1) ordered pairs).
+     * @return true if the graph is connected by definition or false if not connectes
+     */
     @Override
     public boolean isConnected() {
 
@@ -63,12 +82,24 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return !this.dist.containsValue(Double.MAX_VALUE);
     }
 
+    /***
+     * finds the shortest path to the destination using djikstra algorithm compatible to our data structure
+     * @param src - start node
+     * @param dest - end (target) node
+     * @return double summed weight from src to dest
+     */
     @Override
     public double shortestPathDist(int src, int dest) {
         djikstra(src);
         return dist.get(dest);
     }
 
+    /***
+     *returns the the shortest path between src to dest - as an ordered List of nodes using djikstra algorithm
+     * @param src - start node
+     * @param dest - end (target) node
+     * @return nodes key collection
+     */
     @Override
     public List<node_data> shortestPath(int src, int dest) {
         djikstra(src);
@@ -98,9 +129,9 @@ public class DWGraph_Algo implements dw_graph_algorithms {
     }
 
     /**
-     * saves and write our WDGraph to json structured file
+     * saves and write our WDGraph to json structured file format in text (saving all nodes and their edges)
      * @param file - the file name (may include a relative path).
-     * @return
+     * @return boolean value if the save is done properly
      */
     @Override
     public boolean save(String file) {
@@ -139,7 +170,11 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return true;
     }
 
-
+    /***
+     * can load a graph from a file with json format using Gson library
+     * @param file - file name of JSON file
+     * @return boolean if manage to load properly and init the DWGraph with the loaded data(nodes and edges)
+     */
     @Override
     public boolean load(String file) {
         try {
@@ -157,6 +192,10 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return true;
     }
 
+    /***
+     * Dijkstra's algorithm is a step-by-step process we can use to find the shortest path between two vertices in a weighted graph. This algorithm enables us to find shortest distances and minimum costs
+     * @param source -source node
+     */
     public void djikstra(int source) {
 
         PriorityQueue<node_data> q = new PriorityQueue<>();

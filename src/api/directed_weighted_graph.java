@@ -19,8 +19,8 @@ public interface directed_weighted_graph {
 	/**
 	 * returns the data of the edge (src,dest), null if none.
 	 * Note: this method should run in O(1) time.
-	 * @param src
-	 * @param dest
+	 * @param src source node
+	 * @param dest dest node
 	 * @return
 	 */
 	public edge_data getEdge(int src, int dest);

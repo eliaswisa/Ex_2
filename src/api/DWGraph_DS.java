@@ -4,7 +4,10 @@ package api;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class DWGraph_DS implements directed_weighted_graph {
+/***
+ * directed weighed graph who build from nodes and edges that connects between them
+ */
+public class DWGraph_DS implements directed_weighted_graph ,java.io.Serializable{
     private HashMap<Integer, node_data> nodes;
     private HashMap<Integer, HashMap<Integer, edge_data>> edges;
     private int edge_counter = 0;
@@ -12,6 +15,9 @@ public class DWGraph_DS implements directed_weighted_graph {
     private int MC = 0;
 //    NodeData Newnode = new NodeData();
 
+    /***
+     * default constructor
+     */
     public DWGraph_DS() {
         nodes = new HashMap<>();
         edges = new HashMap<>();
@@ -20,6 +26,11 @@ public class DWGraph_DS implements directed_weighted_graph {
         nodes_counter = 0;
     }
 
+    /***
+     * node getter
+     * @param key - the node_id
+     * @return node_data by his key
+     */
     @Override
     public node_data getNode(int key) {
         if (this.nodes.get(key) == null) {
@@ -28,6 +39,12 @@ public class DWGraph_DS implements directed_weighted_graph {
         return this.nodes.get(key);
     }
 
+    /***
+     * edge getter
+     * @param src node src
+     * @param dest destination node
+     * @return edge between two nodes
+     */
     @Override
     public edge_data getEdge(int src, int dest) {
         if (this.nodes.get(src) == null || this.nodes.get(dest) == null) {
@@ -45,7 +62,7 @@ public class DWGraph_DS implements directed_weighted_graph {
      * adds a new node to the graph with the given node_data.
      * Note: this method should run in O(1) time.
      *
-     * @param n
+     * @param n node to be added
      */
     @Override
     public void addNode(node_data n) {
@@ -60,6 +77,12 @@ public class DWGraph_DS implements directed_weighted_graph {
         }
     }
 
+    /***
+     * connects between two nodes
+     * @param src - the source of the edge.
+     * @param dest - the destination of the edge.
+     * @param w - positive weight representing the cost (aka time, price, etc) between src-->dest.
+     */
     @Override
     public void connect(int src, int dest, double w) {
         if (this.nodes.get(src) == null || this.nodes.get(dest) == null) {
@@ -86,11 +109,20 @@ public class DWGraph_DS implements directed_weighted_graph {
         }
     }
 
+    /***
+     * nodes collection of this graph
+     * @return Collection of the nodes in this graph
+     */
     @Override
     public Collection<node_data> getV() {
         return nodes.values();
     }
 
+    /***
+     * edges collection of edges by specific node
+     * @param node_id
+     * @return Collection of edges
+     */
     @Override
     public Collection<edge_data> getE(int node_id) {
         if (edges.containsKey(node_id))
@@ -99,6 +131,10 @@ public class DWGraph_DS implements directed_weighted_graph {
         return null;
     }
 
+    /***
+     * all graph edges in collection
+     * @return all graph collections
+     */
     // TODO: 11/12/2020 check if i did it in the right way,it should take all the edge_data elements from all the hash map
     public Collection<edge_data> getE() {
         Collection<Integer> allEdgesSrcKeyList = edges.keySet();
@@ -111,6 +147,11 @@ public class DWGraph_DS implements directed_weighted_graph {
         return allGeneralEdgesCollection;
     }
 
+    /***
+     * node remover by specific key if exists in the graph
+     * @param key
+     * @return the removed node
+     */
     @Override
     public node_data removeNode(int key) {
         if (nodes.get(key) != null) {
@@ -154,6 +195,12 @@ public class DWGraph_DS implements directed_weighted_graph {
 //            }
     }
 
+    /***
+     * edge remover
+     * @param src
+     * @param dest
+     * @return the removed edge
+     */
     @Override
     public edge_data removeEdge(int src, int dest) {
         if (this.edges.get(src) != null) {
@@ -162,17 +209,29 @@ public class DWGraph_DS implements directed_weighted_graph {
         return null;
     }
 
+    /***
+     * the number of the nodes in the graph
+     * @return
+     */
     @Override
     public int nodeSize() {
         //return nodes_counter;
         return this.nodes.size();
     }
 
+    /***
+     * return the number of the edges in this graph in o(1)
+     * @return int edges size
+     */
     @Override
     public int edgeSize() {
         return edge_counter;
     }
 
+    /***
+     * mode counter that sums the number of actions that change the inner structure of the graph
+     * @return int mode counter
+     */
     @Override
     public int getMC() {
         return MC;
