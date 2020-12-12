@@ -128,7 +128,7 @@ setLocation-sets 3d location point
 
 **dijkstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
 
-dijkstra algorithm visual simulation below:
+dijkstra algorithm infographics below:
 
 <img src="wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
 
