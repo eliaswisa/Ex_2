@@ -127,6 +127,7 @@ setLocation-sets 3d location point
 **load**-loads the graph from file by streaming all his data after implementing serilizable
 
 **djikstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
+
 visual simulation below:
 
 <img src="wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
