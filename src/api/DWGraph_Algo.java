@@ -179,13 +179,13 @@ public class DWGraph_Algo implements dw_graph_algorithms {
     public boolean load(String file) {
         try {
             GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.registerTypeAdapter(DWGraph_DS.class, new DW_JsonGraphDeserial());
-            Gson gsonCreated = gsonBuilder.create();
+            gsonBuilder.registerTypeAdapter(DWGraph_DS.class, new DW_Deserial());
+            Gson gsonf = gsonBuilder.create();
 
             FileReader reader = new FileReader(file);
-            this.graph = gsonCreated.fromJson(reader, DWGraph_DS.class);
+            this.graph = gsonf.fromJson(reader, DWGraph_DS.class);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+
             return false;
         }
 

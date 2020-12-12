@@ -8,7 +8,7 @@ import java.util.Iterator;
 /***
  *Abstract class that defines API used by ObjectMapper (and other chained JsonDeserializers too) to deserialize Objects of arbitrary types from JSON, using provided JsonParser.
  */
-public class DW_JsonGraphDeserial implements JsonDeserializer<directed_weighted_graph> {
+public class DW_Deserial implements JsonDeserializer<directed_weighted_graph> {
     @Override
     public directed_weighted_graph deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
         directed_weighted_graph DWgraph = new DWGraph_DS();

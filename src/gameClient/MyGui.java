@@ -27,11 +27,18 @@ public class MyGui extends JFrame {
     }
 
     public void update(Arena ar) {
+        //closes the program if press x on our game window
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       setLocationRelativeTo(null);
         this._ar = ar;
         updateFrame();
     }
 
     private void updateFrame() {
+
+        setLayout(new FlowLayout());
+
+        //setSize();
         Range rx = new Range(20, this.getWidth() - 20);
         Range ry = new Range(this.getHeight() - 10, 150);
         Range2D frame = new Range2D(rx, ry);
@@ -44,6 +51,7 @@ public class MyGui extends JFrame {
         int h = this.getHeight();
         g.clearRect(0, 0, w, h);
         //	updateFrame();
+
         drawPokemons(g);
         drawGraph(g);
         drawAgants(g);
