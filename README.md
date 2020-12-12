@@ -29,7 +29,7 @@ EdgeLocation-this class represents a position on the graph
 
 EX2-This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
-DW_JsonGraphDeserial-Abstract class that defines API used by ObjectMapper (and other chained JsonDeserializers too) to deserialize Objects of arbitrary types from JSON, using provided JsonParser.
+DW_Deserial-Abstract class that defines API used by ObjectMapper (and other chained JsonDeserializers too) to deserialize Objects of arbitrary types from JSON, using provided JsonParser.
 
 
 ***NodeData class methods:***
