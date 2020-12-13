@@ -16,6 +16,7 @@ public class GeoLocation implements geo_location {
     public double x() {
         return this.x;
     }
+
     /***
      *
      * @return y coordinate
@@ -24,6 +25,7 @@ public class GeoLocation implements geo_location {
     public double y() {
         return this.y;
     }
+
     /***
      *
      * @return z coordinate
@@ -33,16 +35,6 @@ public class GeoLocation implements geo_location {
         return this.z;
     }
 
-    /***
-     * method that calculate distance between two points
-     * @param g geo location object
-     * @return double distance
-     */
-    @Override
-    public double distance(geo_location g) {
-        double d;
-        return Math.sqrt(Math.pow(g.x() - this.x, 2) + Math.pow(g.y() - this.y, 2) + Math.pow(g.z() - this.z, 2));
-    }
 
     /***
      * constructor with x y z arguments
@@ -66,4 +58,16 @@ public class GeoLocation implements geo_location {
         this.y = geo.y();
         this.z = geo.z();
     }
+
+    /***
+     * method that calculate distance between two points
+     * @param g geo location object
+     * @return double distance
+     */
+    @Override
+    public double distance(geo_location g) {
+        double d;
+        return Math.sqrt(Math.pow(g.x() - this.x, 2) + Math.pow(g.y() - this.y, 2) + Math.pow(g.z() - this.z, 2));
+    }
+
 }

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 /***
  * this class is an node who has several fields
  */
-public class NodeData implements node_data, Comparable<node_data> ,java.io.Serializable {
+public class NodeData implements node_data, Comparable<node_data>, java.io.Serializable {
 
     private int key;
     private double weight;
@@ -28,6 +28,18 @@ public class NodeData implements node_data, Comparable<node_data> ,java.io.Seria
 
     }
 
+    /**
+     * copy constructor
+     * @param n
+     */
+    public NodeData(NodeData n) {
+        this.key=n.getKey();
+        this.info=n.getInfo();
+        this.tag=n.getTag();
+        this.weight=n.getWeight();
+        this.location=new GeoLocation(n.getLocation().x(),n.getLocation().y(),n.getLocation().z());
+
+    }
 //    public NodeData(GeoLocation location) {
 //        this.location = location;
 //        this.key = id;

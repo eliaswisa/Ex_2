@@ -17,6 +17,7 @@ public class EdgeData implements edge_data {
      * @param end
      * @param w
      */
+
     public EdgeData(int start, int end, double w) {
 
         this.src = start;
@@ -25,7 +26,14 @@ public class EdgeData implements edge_data {
         this.info = "";
         this.tag = 0;
     }
+    public EdgeData() {
 
+//        this.src = e.src;
+//        this.dest = e.dest;
+//        this.weight = e.weight;
+//        this.info = "";
+//        this.tag = 0;
+    }
     /***
      * copy constructor
      * @param e
