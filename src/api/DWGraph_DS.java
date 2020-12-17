@@ -3,13 +3,12 @@ package api;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 /***
  * directed weighed graph who build from nodes and edges that connects between them
  */
 public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable {
-    private HashMap<Integer, node_data> nodes= new HashMap<Integer, node_data>();
+    private HashMap<Integer, node_data> nodes = new HashMap<Integer, node_data>();
     private HashMap<Integer, HashMap<Integer, edge_data>> edges = new HashMap<Integer, HashMap<Integer, edge_data>>();
     private int edge_counter = 0;
     private int nodes_counter = 0;
@@ -29,17 +28,13 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
 
     // TODO: 13/12/2020 copy constructor check if good
     public DWGraph_DS(DWGraph_DS c) {
-
-
         this.setEdgeCounter(this.edgeSize());
         for (node_data node : c.getV()) {
             NodeData tempi = new NodeData((NodeData) node);
             this.addNode(tempi);
         }
         //////////////////////////////////////////////////////////////////////
-
         if (c.edges.keySet() != null) {
-
             for (int key : c.edges.keySet()) {
                 HashMap<Integer, edge_data> edgesTempHash = new HashMap<Integer, edge_data>();
                 this.edges.put(key, edgesTempHash);
@@ -49,7 +44,6 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
                 }
             }
         }
-
     }
 
     /***
@@ -92,14 +86,12 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
      */
     @Override
     public void addNode(node_data n) {
-        if (nodes.isEmpty())
-        {
-            nodes.put(n.getKey(),n);
+        if (nodes.isEmpty()) {
+            nodes.put(n.getKey(), n);
             MC++;
             nodes_counter++;
             return;
-        }else
-        if (nodes.get(n.getKey())==null) {
+        } else if (nodes.get(n.getKey()) == null) {
 
             nodes.put(n.getKey(), n);
             edges.put(n.getKey(), new HashMap<>());
@@ -117,7 +109,10 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
      */
     @Override
     public void connect(int src, int dest, double w) {
-        if(src==dest){return;}
+        if ((src == dest)||(w==0)) {
+            return;
+        }
+
         if (this.nodes.get(src) == null || this.nodes.get(dest) == null) {
             return;
         } else {
@@ -137,28 +132,7 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
             }
         }
 
-        //        if (this.nodes.get(src) == null || this.nodes.get(dest) == null) {
-//            return;
-//        }
-//
-//        if (src != dest && w >= 0) {
-//
-//            EdgeData newEdge = new EdgeData(src, dest, w);
-//
-//            if (!edges.get(src).containsKey(dest)) {
-//                this.edges.put(src, new HashMap<Integer, edge_data>());
-//                this.edges.get(src).put(dest, newEdge);
-//                edge_counter++;
-//                MC++;
-//            }
-//            else {
-//                if (edges.get(src).get(dest) == null) {
-////                    this.edges.get(src).put(dest, newEdge);
-//                    edge_counter++;
-//                    MC++;
 
-//                }
-//        }
     }
 
     /***
@@ -187,20 +161,20 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
      * all graph edges in collection
      * @return all graph collections
      */
-    // TODO: 13/12/2020 fix it in general becaise the null pointer exception 
+    // TODO: 13/12/2020 fix it in general becaise the null pointer exception
     // TODO: 11/12/2020 check if i did it in the right way,it should take all the edge_data elements from all the hash map
-    public Collection<edge_data> getE() {
-        Collection<Integer> allEdgesSrcKeyList = edges.keySet();
-        Collection<edge_data> allGeneralEdgesCollection = new ConcurrentLinkedDeque<>();
-        allGeneralEdgesCollection.add(new EdgeData(3, 5, 1));
-
-        for (int key : allEdgesSrcKeyList) {
-            for (int key2 : this.edges.get(key).keySet()) {
-                allGeneralEdgesCollection.add(edges.get(key).get(key2));
-            }
-        }
-        return allGeneralEdgesCollection;
-    }
+//    public Collection<edge_data> getE() {
+//        Collection<Integer> allEdgesSrcKeyList = edges.keySet();
+//        Collection<edge_data> allGeneralEdgesCollection = new ConcurrentLinkedDeque<>();
+//        allGeneralEdgesCollection.add(new EdgeData(3, 5, 1));
+//
+//        for (int key : allEdgesSrcKeyList) {
+//            for (int key2 : this.edges.get(key).keySet()) {
+//                allGeneralEdgesCollection.add(edges.get(key).get(key2));
+//            }
+//        }
+//        return allGeneralEdgesCollection;
+//    }
 
     /***
      * node remover by specific key if exists in the graph
@@ -210,7 +184,6 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
     @Override
     public node_data removeNode(int key) {
         if (nodes.get(key) != null) {
-
             node_data nd = this.nodes.remove(key);
             if (edges.get(key) != null) {
                 Collection<edge_data> edgeColl = this.edges.remove(key).values();
@@ -218,11 +191,12 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
             }
 
             for (node_data n : getV()) {
-
-                edges.get(n.getKey()).remove(key);
-                edge_counter--;
-                MC++;
-
+                if (edges.get(n.getKey()) != null) {
+                   if (edges.get(n.getKey()).get(key)!=null)
+                   {  edges.get(n.getKey()).remove(key);
+                    edge_counter--;
+                    MC++;
+                }}
             }
 
 //            for (int i = 0; i <= NodeData.id; i++) {

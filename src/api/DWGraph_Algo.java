@@ -1,11 +1,10 @@
 package api;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
@@ -25,6 +24,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
      */
     @Override
     public void init(directed_weighted_graph g) {
+
         this.graph = g;
     }
 
@@ -57,7 +57,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
     @Override
     public directed_weighted_graph copy() {
         DWGraph_DS d_w_g = new DWGraph_DS((DWGraph_DS) this.graph) ;
-    return d_w_g;
+        return d_w_g;
     }
 
     /***
@@ -84,7 +84,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         a = !this.dist.containsValue(Double.MAX_VALUE);
 
 
-        return a && b;
+        return a;
 
 
     }
@@ -141,34 +141,77 @@ public class DWGraph_Algo implements dw_graph_algorithms {
      * @param file - the file name (may include a relative path).
      * @return boolean value if the save is done properly
      */
-    // TODO: 13/12/2020 fix save 
+    // TODO: 13/12/2020 fix save
     @Override
     public boolean save(String file) {
-        JsonObject DWGraph = new JsonObject();
-        JsonArray edges = new JsonArray();
-        for (edge_data e : ((DWGraph_DS) graph).getE()) {
-            JsonObject edge = new JsonObject();
-            edge.addProperty("src", e.getSrc());
-            edge.addProperty("w", e.getWeight());
-            edge.addProperty("dest", e.getDest());
-            edges.add(edge);
+        try {
+            JSONObject jsonObject = new JSONObject();
+            JSONArray jsonEdgeArray = new JSONArray();
+            JSONArray jsonNodeArray = new JSONArray();
+            Map<String, Object> jsonNodes = new HashMap<String, Object>();
+            Map<String, Object> jsonEdges = new HashMap<String, Object>();
+            // Collection<edge_data> edges1 = edges.keySet();
+            Collection<node_data> nodes1 = this.graph.getV();
+            for(node_data node : nodes1)
+            {
+                String geoLocationSt = node.getLocation().x() + "," + node.getLocation().y() + "," + node.getLocation().z();
+                jsonNodes.put("pos", geoLocationSt);
+                jsonNodes.put("id", node.getKey());
+                jsonNodeArray.put(jsonNodes);
+            }
+            for(node_data node : nodes1) {
+                for (edge_data edge : ((DWGraph_DS) graph).getE(node.getKey())) {
+                    jsonEdges.put("src", edge.getSrc());
+                    jsonEdges.put("w", edge.getWeight());
+                    jsonEdges.put("dest", edge.getDest());
+                    jsonEdgeArray.put(jsonEdges);
+                }
+            }
+            jsonObject.put("Edges", jsonEdgeArray);
+            jsonObject.put("Nodes", jsonNodeArray);
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(jsonObject.toString());
+            printWriter.flush();
+            printWriter.close();
         }
+        catch(FileNotFoundException | JSONException e)
+        {
+            return false;
+        }
+        return true;
+    }
 
-        JsonArray nodes = new JsonArray();
-        for (node_data n : graph.getV()) {
-            JsonObject node = new JsonObject();
-            String pos = n.getLocation().x() + "," + n.getLocation().y() + "," + n.getLocation().z();
-            node.addProperty("pos", pos);
-            node.addProperty("id", n.getKey());
-            nodes.add(node);
-        }
-        DWGraph.add("Edges", edges);
-        DWGraph.add("Nodes", nodes);
+
+
+    /**
+     * This method load a graph to this graph algorithm.
+     * if the file was successfully loaded - the underlying graph
+     * of this class will be changed (to the loaded one), in case the
+     * graph was not loaded the original graph should remain "as is".
+     * @param file - file name
+     * @return true - iff the graph was successfully loaded.
+     */
+    @Override
+    public boolean load(String file) {
         try {
             Gson gson = new Gson();
-            PrintWriter printWriter = new PrintWriter(new File(file));
-            printWriter.write(gson.toJson(graph));
-            printWriter.close();
+            JsonObject jsonOb = new JsonParser().parse(new FileReader(file)).getAsJsonObject();
+            JsonArray nodesArray = jsonOb.getAsJsonArray("Nodes");
+            directed_weighted_graph g = new DWGraph_DS();
+            for (JsonElement node : nodesArray) {
+                String[] nodePosition = ((JsonObject) node).get("pos").getAsString().split(",");
+                geo_location location3d = new GeoLocation(Double.parseDouble(nodePosition[0]), Double.parseDouble(nodePosition[1]), Double.parseDouble(nodePosition[2]));
+                NodeData nd=new NodeData(((JsonObject)node).get("id").getAsInt());
+                nd.setLocation(location3d);
+                g.addNode(nd);
+            }
+
+            JsonArray edgesArray = jsonOb.getAsJsonArray("Edges");
+            for (JsonElement edge : edgesArray){
+                JsonObject e = (JsonObject)edge;
+                g.connect(e.get("src").getAsInt(),e.get("dest").getAsInt(),e.get("w").getAsDouble());
+            }
+            this.graph = g;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return false;
@@ -176,29 +219,6 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return true;
     }
 
-    /***
-     * can load a graph from a file with json format using Gson library
-     * @param file - file name of JSON file
-     * @return boolean if manage to load properly and init the DWGraph with the loaded data(nodes and edges)
-     */
-    @Override
-    // TODO: 13/12/2020 fix load 
-    public boolean load(String file) {
-        try {
-            GsonBuilder builder = new GsonBuilder();
-            builder.registerTypeAdapter(DWGraph_DS.class, new DW_Deserial());
-            Gson gson = builder.create();
-
-            FileReader reader = new FileReader(file);
-            this.graph= gson.fromJson(reader, DWGraph_DS.class);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
-    }
 
     /***
      * Dijkstra's algorithm is a step-by-step process we can use to find the shortest path between two vertices in a weighted graph. This algorithm enables us to find shortest distances and minimum costs
@@ -278,17 +298,18 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         DWGraph_Algo m = new DWGraph_Algo();
         DWGraph_Algo m2 = new DWGraph_Algo();
         m.init(g);
-        m2.graph=m.copy();
+        m2.graph = m.copy();
 
 
-        g.connect(5,1,1);
+        g.connect(5, 1, 1);
         dw_graph_algorithms g1 = new DWGraph_Algo();
         g1.init(g);
         g1.save("graph.json");
         dw_graph_algorithms g2 = new DWGraph_Algo();
         g2.load("graph.json");
-        System.out.println(m.isConnected());
-        System.out.println(g.getE(0));
+
+//        System.out.println(m.isConnected());
+//        System.out.println(g.getE(0));
 
     }
 }
