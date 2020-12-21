@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ *class who wraps the hole game and run it for out use
+ */
 public class Ex2 implements Runnable {
     private static MyFrame _win;
     private static Arena _ar;
@@ -16,7 +19,7 @@ public class Ex2 implements Runnable {
     private int level =0 ;
     public static void main(String[] a) {
 
-//java -jar Ex2.jar <parmter 1> < parmter 2>
+
         if(a.length==0) {
             GuiStart stam = new GuiStart();
             stam.start_game();
@@ -26,10 +29,20 @@ public class Ex2 implements Runnable {
             client.start();
         }
     }
+
+    /**
+     * constructor for the class
+     * @param _id id argument
+     * @param _level level argument
+     */
     public Ex2(int _id,int _level){
         this.id=_id;
         this.level=_level;
     }
+
+    /**
+     * run the thread that wraps this class
+     */
     @Override
     public void run() {
         int scenario_num = this.level;
@@ -72,9 +85,9 @@ public class Ex2 implements Runnable {
     /**
      * Moves each of the agents along the edge,
      * in case the agent is on a node the next destination (next edge) is chosen (randomly).
-     *
-     * @param game
-     * @param gg
+     * method who move the agent
+     * @param game server game info
+     * @param gg DW_Graph for the game
      * @param
      */
     private static void moveAgants(game_service game, directed_weighted_graph gg) {
@@ -114,8 +127,8 @@ public class Ex2 implements Runnable {
     }
 
     /**
-     * a very simple random walk implementation!
      *
+     * method that choose which node is the next node for the agent in the way to his pokemon
      * @param g
      * @param src
      * @return
@@ -134,7 +147,6 @@ public class Ex2 implements Runnable {
            if(dist< min_dist){
             min_dist=dist;
             ans=e;
-           //    System.out.println(ans);
            }
         }
 
@@ -142,6 +154,10 @@ public class Ex2 implements Runnable {
 //
     }
 
+    /**
+     * initiate the agent for the nearst place to their pokemon targets
+     * @param game game server
+     */
     private void init(game_service game) {
         String g = game.getGraph();
         String fs = game.getPokemons();

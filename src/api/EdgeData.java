@@ -28,11 +28,7 @@ public class EdgeData implements edge_data {
     }
     public EdgeData() {
 
-//        this.src = e.src;
-//        this.dest = e.dest;
-//        this.weight = e.weight;
-//        this.info = "";
-//        this.tag = 0;
+
     }
     /***
      * copy constructor
@@ -73,7 +69,6 @@ public class EdgeData implements edge_data {
     public int getSrc() {
         return this.src;
     }
-
     /***
      * destination getter
      * @return  int node key destination
@@ -82,7 +77,6 @@ public class EdgeData implements edge_data {
     public int getDest() {
         return this.dest;
     }
-
     /***
      * weight getter
      * @return

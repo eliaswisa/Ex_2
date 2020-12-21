@@ -31,10 +31,13 @@ public class MyFrame extends JFrame {
     Image agentImage;
     Image pokemonImage;
     //JLabel timeLabel = new JLabel();
-     BufferedImage img1 ;
+    BufferedImage img1 ;
 
 
-
+    /**
+     *Represents The whole graphics in our game.
+     * @param a
+     */
     public MyFrame(String a) {
         super(a);
         int _ind = 0;
@@ -42,11 +45,18 @@ public class MyFrame extends JFrame {
 
     }
 
+    /**
+     *Update our arena frame.
+     * @param ar
+     */
     public void update(Arena ar) {
         this._ar = ar;
         updateFrame();
     }
 
+    /**
+     *Update our frame.
+     */
     private void updateFrame() {
         Range rx = new Range(20, this.getWidth() - 20);
         Range ry = new Range(this.getHeight() - 10, 150);
@@ -56,6 +66,10 @@ public class MyFrame extends JFrame {
 
     }
 
+    /**
+     *This function is used for paint our graph with width and height that we choose.
+     * @param g
+     */
     public void paint(Graphics g) {
         int width = this.getWidth();
         int height = this.getHeight();
@@ -79,14 +93,24 @@ public class MyFrame extends JFrame {
 
     }
 
+    /**
+     *This function is used for Draw a wallpaper into our graph.
+     * @param g
+     * @throws IOException
+     */
     private void drawWallPaper(Graphics g) throws IOException {
         img1=ImageIO.read(getClass().getResourceAsStream("wallpaper"));
         g.drawImage(img1,100,100,this);
 
     }
-public void setTime(long time){
-       this.time=time;
-}
+
+    /**
+     *Set a timer to our game.
+     * @param time
+     */
+    public void setTime(long time){
+        this.time=time;
+    }
     private void drawInfo(Graphics g) {
         List<String> str = _ar.get_info();
         String dt = "none";
@@ -96,6 +120,10 @@ public void setTime(long time){
 
     }
 
+    /**
+     *A function that used for drawing our graph.
+     * @param g
+     */
     private void drawGraph(Graphics g) {
 
         directed_weighted_graph gg = _ar.getGraph();
@@ -113,6 +141,10 @@ public void setTime(long time){
         }
     }
 
+    /**
+     *This function is used for Drawing our pokemons in the graph.
+     * @param g
+     */
     private void drawPokemons(Graphics g) {
         ImageIcon im = new ImageIcon("data/images/pokemon256x256.png");
         pokemonImage = im.getImage();
@@ -137,6 +169,11 @@ public void setTime(long time){
             }
         }
     }
+
+    /**
+     *This function is used for Drawing our agents into our graph.
+     * @param g
+     */
     private void drawAgants(Graphics g) {
         ImageIcon im = new ImageIcon("data/images/agent.png");
         agentImage = im.getImage();
@@ -160,6 +197,12 @@ public void setTime(long time){
         }
     }
 
+    /**
+     *This function is used for Drawing our nodes into our graph.
+     * @param n
+     * @param r
+     * @param g
+     */
     private void drawNode(node_data n, int r, Graphics g) {
         geo_location pos = n.getLocation();
         geo_location fp = this._w2f.world2frame(pos);
@@ -167,6 +210,11 @@ public void setTime(long time){
         g.drawString("" + n.getKey(), (int) fp.x(), (int) fp.y() - 4 * r);
     }
 
+    /**
+     *This function is used for Drawing our edges into our graph.
+     * @param e
+     * @param g
+     */
     private void drawEdge(edge_data e, Graphics g) {
         directed_weighted_graph gg = _ar.getGraph();
         geo_location s = gg.getNode(e.getSrc()).getLocation();

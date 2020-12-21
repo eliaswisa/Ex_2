@@ -26,14 +26,14 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
         nodes_counter = 0;
     }
 
-    // TODO: 13/12/2020 copy constructor check if good
+
     public DWGraph_DS(DWGraph_DS c) {
         this.setEdgeCounter(this.edgeSize());
         for (node_data node : c.getV()) {
             NodeData tempi = new NodeData((NodeData) node);
             this.addNode(tempi);
         }
-        //////////////////////////////////////////////////////////////////////
+
         if (c.edges.keySet() != null) {
             for (int key : c.edges.keySet()) {
                 HashMap<Integer, edge_data> edgesTempHash = new HashMap<Integer, edge_data>();
@@ -132,9 +132,7 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
             }
         }
 
-
     }
-
     /***
      * nodes collection of this graph
      * @return Collection of the nodes in this graph
@@ -143,7 +141,6 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
     public Collection<node_data> getV() {
         return nodes.values();
     }
-
     /***
      * edges collection of edges by specific node
      * @param node_id
@@ -156,26 +153,12 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
 
         return null;
     }
-
     /***
      * all graph edges in collection
      * @return all graph collections
      */
     // TODO: 13/12/2020 fix it in general becaise the null pointer exception
     // TODO: 11/12/2020 check if i did it in the right way,it should take all the edge_data elements from all the hash map
-//    public Collection<edge_data> getE() {
-//        Collection<Integer> allEdgesSrcKeyList = edges.keySet();
-//        Collection<edge_data> allGeneralEdgesCollection = new ConcurrentLinkedDeque<>();
-//        allGeneralEdgesCollection.add(new EdgeData(3, 5, 1));
-//
-//        for (int key : allEdgesSrcKeyList) {
-//            for (int key2 : this.edges.get(key).keySet()) {
-//                allGeneralEdgesCollection.add(edges.get(key).get(key2));
-//            }
-//        }
-//        return allGeneralEdgesCollection;
-//    }
-
     /***
      * node remover by specific key if exists in the graph
      * @param key
@@ -260,7 +243,6 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
 
         this.edges = edges2;
     }
-
     @Override
     public boolean equals(Object object) {
 
@@ -268,7 +250,6 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
         DWGraph_DS WDSGraph = (DWGraph_DS) object;
         boolean a = (edgesCounter() == WDSGraph.edgesCounter());
         boolean b = getV().size()==(WDSGraph.getV().size());
-
         return (a && b);
     }
 }

@@ -43,22 +43,15 @@ class DWGraph_AlgoTest {
 
         g.addNode(new NodeData(0));
         g.addNode(new NodeData(1));
-        // g.addNode(new NodeData(2));
-        // g.addNode(new NodeData(3));
+
         g.connect(0, 1, 1);
         g.connect(1, 0, 1);
-        // g.connect(1, 2, 1);
-//        g.connect(1, 2, 1);
-//        g.connect(2,3,1);
-//        g.connect(3,1,1);
-//        g.connect(1,4,1);
-//        g.connect(4,3,1);
+
         boolean check = graph_.isConnected();
         assertTrue(check);
-
     }
 
-    // TODO: 18/12/2020 test 
+
     @Test
     void shortestPathDist() {
         {
@@ -78,38 +71,10 @@ class DWGraph_AlgoTest {
             g.connect(1, 2, 1);
             g.connect(2, 8, 1);
             g.connect(0, 8, 8);
-
-
             Collection<node_data> cl = graph_.shortestPath(0, 8);
             System.out.println("asdasd");
         }
     }
-
-
-//    @Test
-//    void shortestPath() {
-//        dw_graph_algorithms graph_ = new DWGraph_Algo();
-//        directed_weighted_graph g = new DWGraph_DS();
-//        graph_.init(g);
-//
-//
-//        g.addNode(new NodeData(0));
-//        g.addNode(new NodeData(1));
-//        g.addNode(new NodeData(2));
-//        g.addNode(new NodeData(3));
-//        g.addNode(new NodeData(4));
-//        g.addNode(new NodeData(5));
-//        g.addNode(new NodeData(6));
-//        g.addNode(new NodeData(7));
-//        g.addNode(new NodeData(8));
-//        g.connect(0, 1, 1);
-//        g.connect(1, 2, 1);
-//        g.connect(2, 8, 1);
-//        g.connect(0, 8, 8);
-//        graph_.shortestPath(0, 7);
-//        //2 ליסטים שאמורים להיות זהים לגמריי
-//    }
-
     @Test
     void saveLoad() {
         dw_graph_algorithms gAlgo1 = new DWGraph_Algo();
@@ -126,10 +91,7 @@ class DWGraph_AlgoTest {
         dw_graph_algorithms gAlgo2 = new DWGraph_Algo();
         gAlgo2.load(str);
         assertEquals(gAlgo1.getGraph(), gAlgo2.getGraph());
-
     }
-
-    // TODO: 20/12/2020 test
     @Test
     void shortestPath() {
         dw_graph_algorithms graph_ = new DWGraph_Algo();
@@ -148,16 +110,11 @@ class DWGraph_AlgoTest {
         g.connect(1, 2, 1);
         g.connect(2, 8, 1);
         g.connect(0, 8, 8);
-
         double a = graph_.shortestPathDist(0, 8);
-
-
         Collection<node_data> cl = graph_.shortestPath(0, 8);
         for(node_data i:cl){
             System.out.print(i.getKey()+" ");
         }
         assertEquals(3, a);
-
-
     }
 }
