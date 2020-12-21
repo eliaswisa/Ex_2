@@ -15,46 +15,44 @@ the project focused on pokemon game-agent who needs to catch the pokemons after 
 that graph built on data stracture of weighted directional graph. that project has several classes.
 
 
-NodeData-who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
+**NodeData-**who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
 
-EdgeData-represents the edges bewtween the nodes including source,destination and weight fields.
+**EdgeData-**represents the edges bewtween the nodes including source,destination and weight fields.
 
-DWGraph_DS-who represents graph that build from NodeData and EdgeData HashMaps.
+**DWGraph_DS-**who represents graph that build from NodeData and EdgeData HashMaps.
 
-DWGraph_Algo-who represents algorithm and save and load methods that can save and load graphs from specific files DWGraph_DS class
+**DWGraph_Algo-**who represents algorithm and save and load methods that can save and load graphs from specific files DWGraph_DS class
 
-GeoLocation-describe an geographic location on the graph (basicly an 3d point).
+**GeoLocation-**describe an geographic location on the graph (basicly an 3d point).
 
-EdgeLocation-this class represents a position on the graph
+**EdgeLocation-**this class represents a position on the graph
 
-EX2-This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
-
-DW_Deserial-Abstract class that defines API used by ObjectMapper (and other chained JsonDeserializers too) to deserialize Objects of arbitrary types from JSON, using provided JsonParser.
+**EX2-**This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
 
 ***NodeData class methods:***
 
-getKey-returns key
+**getKey-** returns key
 
-getInfo-gets info
+**getInfo-**gets info
 
-setInfo-sets info
+**setInfo-**sets info
 
-getTag-gets tag
+**getTag-**gets tag
 
-setTag-sest tag
+**setTag-**sest tag
 
-compareTo-comparing between two nodes
+**compareTo-**comparing between two nodes
 
-ToString-allow to print Node object
+**ToString-**allow to print Node object
 
-setWeight-setting weight  to the node
+**setWeight-**setting weight  to the node
 
-getWeight-gets weight from the node
+**getWeight-**gets weight from the node
 
-getLocation-gets 3d location point
+**getLocation-**gets 3d location point
 
-setLocation-sets 3d location point
+**setLocation-**sets 3d location point
 
 *constructors getters and setters defined as well according to need*
 
@@ -128,7 +126,7 @@ setLocation-sets 3d location point
 
 **dijkstra** -an side function based on djikstra algorithm that knows how to finds the shortest path using djikstra principle
 
-dijkstra algorithm infographics below:
+
 
 <img src="data/wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
 
@@ -139,5 +137,12 @@ dijkstra algorithm infographics below:
 
 **distance**- calculating the distance between two 3d points 
 
-***EX2 class methods***-
+***EX2 class methods***
+
+***moveAgants -*** move the agents and sets them on chosen node on the arena in every "move" call the agents get closer to their pokemons tagets
+
+***nextNode-*** method who decide the agent which node is the next node on his path for his targeted pokemon
+
+***init-*** sets the pokemons the graph and the agents into the arena 
+
 
