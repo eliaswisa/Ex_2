@@ -23,19 +23,18 @@ import java.util.List;
  * code and not to take it "as is".
  */
 public class MyFrame extends JFrame {
-
-    private long time=0;
+    private long time = 0;
     private int _ind;
     private Arena _ar;
     private gameClient.util.Range2Range _w2f;
     Image agentImage;
     Image pokemonImage;
-    //JLabel timeLabel = new JLabel();
-    BufferedImage img1 ;
+    BufferedImage img1;
 
 
     /**
-     *Represents The whole graphics in our game.
+     * Represents The whole graphics in our game.
+     *
      * @param a
      */
     public MyFrame(String a) {
@@ -46,7 +45,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *Update our arena frame.
+     * Update our arena frame.
+     *
      * @param ar
      */
     public void update(Arena ar) {
@@ -55,7 +55,7 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *Update our frame.
+     * Update our frame.
      */
     private void updateFrame() {
         Range rx = new Range(20, this.getWidth() - 20);
@@ -67,7 +67,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *This function is used for paint our graph with width and height that we choose.
+     * This function is used for paint our graph with width and height that we choose.
+     *
      * @param g
      */
     public void paint(Graphics g) {
@@ -86,31 +87,34 @@ public class MyFrame extends JFrame {
 
         drawInfo(bufferG);
         bufferG.setColor(Color.BLUE);
-        bufferG.setFont(new Font("time",Font.BOLD,20));
-        bufferG.drawString("Time "+time,100,50);
+        bufferG.setFont(new Font("time", Font.BOLD, 20));
+        bufferG.drawString("Time " + time, 100, 50);
         g.drawImage(buffer_image, 0, 0, this);
 
 
     }
 
     /**
-     *This function is used for Draw a wallpaper into our graph.
+     * This function is used for Draw a wallpaper into our graph.
+     *
      * @param g
      * @throws IOException
      */
     private void drawWallPaper(Graphics g) throws IOException {
-        img1=ImageIO.read(getClass().getResourceAsStream("wallpaper"));
-        g.drawImage(img1,100,100,this);
+        img1 = ImageIO.read(getClass().getResourceAsStream("wallpaper"));
+        g.drawImage(img1, 100, 100, this);
 
     }
 
     /**
-     *Set a timer to our game.
+     * Set a timer to our game.
+     *
      * @param time
      */
-    public void setTime(long time){
-        this.time=time;
+    public void setTime(long time) {
+        this.time = time;
     }
+
     private void drawInfo(Graphics g) {
         List<String> str = _ar.get_info();
         String dt = "none";
@@ -121,7 +125,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *A function that used for drawing our graph.
+     * A function that used for drawing our graph.
+     *
      * @param g
      */
     private void drawGraph(Graphics g) {
@@ -142,7 +147,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *This function is used for Drawing our pokemons in the graph.
+     * This function is used for Drawing our pokemons in the graph.
+     *
      * @param g
      */
     private void drawPokemons(Graphics g) {
@@ -171,7 +177,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *This function is used for Drawing our agents into our graph.
+     * This function is used for Drawing our agents into our graph.
+     *
      * @param g
      */
     private void drawAgants(Graphics g) {
@@ -183,7 +190,7 @@ public class MyFrame extends JFrame {
         int i = 0;
         while (rs != null && i < rs.size()) {
             geo_location c = rs.get(i).getLocation();
-            String value= rs.get(i).getValue()+"";
+            String value = rs.get(i).getValue() + "";
             int r = 8;
             i++;
             if (c != null) {
@@ -191,14 +198,15 @@ public class MyFrame extends JFrame {
                 geo_location fp = this._w2f.world2frame(c);
                 g.drawImage(agentImage, (int) fp.x() - 20, (int) fp.y() - 15, 50, 50, null);
                 g.setColor(Color.red);
-                g.setFont(new Font("time",Font.BOLD,20));
-                g.drawString("Score "+value,(int) fp.x(), (int) fp.y()-4*r);
+                g.setFont(new Font("time", Font.BOLD, 20));
+                g.drawString("Score " + value, (int) fp.x(), (int) fp.y() - 4 * r);
             }
         }
     }
 
     /**
-     *This function is used for Drawing our nodes into our graph.
+     * This function is used for Drawing our nodes into our graph.
+     *
      * @param n
      * @param r
      * @param g
@@ -211,7 +219,8 @@ public class MyFrame extends JFrame {
     }
 
     /**
-     *This function is used for Drawing our edges into our graph.
+     * This function is used for Drawing our edges into our graph.
+     *
      * @param e
      * @param g
      */

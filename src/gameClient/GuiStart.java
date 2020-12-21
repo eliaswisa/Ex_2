@@ -12,19 +12,20 @@ public class GuiStart extends JFrame {
 
 
     /**
-     *draw window for the user for inserting id and level chooser
+     * draw window for the user for inserting id and level chooser
      */
     public void start_game() {
+
         this.setSize(200, 300);
         this.setLayout(new FlowLayout());
 
         JButton start = new JButton("Start");
-        JLabel id_label = new JLabel("Enter your id ");
-        JLabel level_label = new JLabel("Enter your level 0-23 ");
+        JLabel id_label = new JLabel("please Enter your id ");
+        JLabel level_label = new JLabel("please Enter your level 0-23 ");
 
         JTextField id_text = new JTextField("", 15);
         JTextField LEVEL_text = new JTextField("", 15);
-
+        this.setLocation(700, 300);
         this.add(id_label);
         this.add(id_text);
         this.add(level_label);

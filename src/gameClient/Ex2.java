@@ -18,8 +18,6 @@ public class Ex2 implements Runnable {
     private int id=0;
     private int level =0 ;
     public static void main(String[] a) {
-
-
         if(a.length==0) {
             GuiStart stam = new GuiStart();
             stam.start_game();
@@ -29,7 +27,6 @@ public class Ex2 implements Runnable {
             client.start();
         }
     }
-
     /**
      * constructor for the class
      * @param _id id argument
