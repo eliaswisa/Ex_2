@@ -15,17 +15,17 @@ the project focused on pokemon game-agent who needs to catch the pokemons after 
 that graph built on data stracture of weighted directional graph. that project has several classes.
 
 
-**NodeData-**who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
+**NodeData-** who represents node in a graph as inner class of WGraph who has a field of adjacency list in a form of hashMap of nodes and keys 
 
-**EdgeData-**represents the edges bewtween the nodes including source,destination and weight fields.
+**EdgeData-** represents the edges bewtween the nodes including source,destination and weight fields.
 
-**DWGraph_DS-**who represents graph that build from NodeData and EdgeData HashMaps.
+**DWGraph_DS-** who represents graph that build from NodeData and EdgeData HashMaps.
 
-**DWGraph_Algo-**who represents algorithm and save and load methods that can save and load graphs from specific files DWGraph_DS class
+**DWGraph_Algo-** who represents algorithm and save and load methods that can save and load graphs from specific files DWGraph_DS class
 
-**GeoLocation-**describe an geographic location on the graph (basicly an 3d point).
+**GeoLocation-** describe an geographic location on the graph (basicly an 3d point).
 
-**EdgeLocation-**this class represents a position on the graph
+**EdgeLocation-** this class represents a position on the graph
 
 **EX2-**This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
