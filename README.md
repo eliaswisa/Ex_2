@@ -3,7 +3,7 @@
 
 
 
-# EX1
+# EX2
 oop university course assingment -weighted directional graph
 
 **authors:**  
@@ -27,7 +27,7 @@ that graph built on data stracture of weighted directional graph. that project h
 
 **EdgeLocation-** this class represents a position on the graph
 
-**EX2-**This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
+**EX2-** This interface represents the main functionality of the game including all the methods that sends and recives data from the graph and communicates with the server
 
 
 ***NodeData class methods:***
@@ -145,4 +145,16 @@ that graph built on data stracture of weighted directional graph. that project h
 
 ***init-*** sets the pokemons the graph and the agents into the arena 
 
+
+***gameClient classes :***
+
+**Arena** - represents a multi Agents Arena
+
+**CL_Agent** - agent creation and his fields and methods
+
+**CL_Pokemon** - agent creation and his fields and methods
+
+**MyFrame** - extends JFarame and represents graphic user interface that paint and draws the game
+
+**GuiStart** - gui class that build and draws the intro window who let the user choose which scenario and id login
 
