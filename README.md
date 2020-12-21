@@ -34,19 +34,19 @@ that graph built on data stracture of weighted directional graph. that project h
 
 **getKey-** returns key
 
-**getInfo-**gets info
+**getInfo-** gets info
 
-**setInfo-**sets info
+**setInfo-** sets info
 
-**getTag-**gets tag
+**getTag-** gets tag
 
-**setTag-**sest tag
+**setTag-** sest tag
 
-**compareTo-**comparing between two nodes
+**compareTo-** comparing between two nodes
 
-**ToString-**allow to print Node object
+**ToString-** allow to print Node object
 
-**setWeight-**setting weight  to the node
+**setWeight-** setting weight  to the node
 
 **getWeight-**gets weight from the node
 
