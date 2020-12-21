@@ -1,5 +1,5 @@
 
-<img src="image-123.png">
+<img src="data/wiki_images/image-123.png">
 
 
 
@@ -130,7 +130,7 @@ setLocation-sets 3d location point
 
 dijkstra algorithm infographics below:
 
-<img src="wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
+<img src="data/wiki_images/2bP4pJr4wVimqCWjYimXJe2cnCgnGNrSY8SknnG67Xj.gif">
 
 
 

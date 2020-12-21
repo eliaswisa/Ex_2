@@ -3,7 +3,7 @@ package api;
 import gameClient.util.Point3D;
 import org.jetbrains.annotations.NotNull;
 
-/***
+/*
  * this class is an node who has several fields
  */
 public class NodeData implements node_data, Comparable<node_data>, java.io.Serializable {
@@ -15,7 +15,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
     //    public static int id = 1;
     private geo_location location;
 
-    /***
+    /*
      * constructor who gets a key for mapping
      * @param key
      */
@@ -40,6 +40,13 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         this.location=new GeoLocation(n.getLocation().x(),n.getLocation().y(),n.getLocation().z());
 
     }
+
+    public NodeData(int key, geo_location location ){
+        this.key=key;
+        this.tag=0;
+        this.info="";
+        this.location=location;
+    }
 //    public NodeData(GeoLocation location) {
 //        this.location = location;
 //        this.key = id;
@@ -49,7 +56,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
 //        this.info = "";
 //    }
 
-    /***
+    /*
      * key getter
      * @return the key of the node
      */
@@ -58,7 +65,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return this.key;
     }
 
-    /***
+    /*
      * geographic location getter
      * @return geo 3d point
      */
@@ -67,7 +74,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return this.location;
     }
 
-    /***
+    /*
      * sets location
      * @param p - new new location  (position) of this node.
      */
@@ -76,7 +83,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         this.location = new Point3D(p.x(), p.y(), p.z());
     }
 
-    /***
+    /*
      * gets the weight of the node
      * @return double node weight
      */
@@ -85,7 +92,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return this.weight;
     }
 
-    /***
+    /*
      * weight setter
      * @param w - the new weight
      */
@@ -94,7 +101,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         this.weight = w;
     }
 
-    /***
+    /*
      * gets the info from the node
      * @return String info
      */
@@ -103,7 +110,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return this.info;
     }
 
-    /***
+    /*
      * info setter
      * @param s
      */
@@ -112,7 +119,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         this.info = s;
     }
 
-    /***
+    /*
      * tag getter-the tags is an specific mark for some method we using at this project
      * @return int tag
      */
@@ -121,7 +128,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return this.tag;
     }
 
-    /***
+    /*
      * tag setter
      * @param t - the new value of the tag
      */
@@ -130,7 +137,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         tag = t;
     }
 
-    /***
+    /*
      * compare nodes by their weight-use for the algorithms
      * @param o
      * @return
@@ -140,7 +147,7 @@ public class NodeData implements node_data, Comparable<node_data>, java.io.Seria
         return Double.compare(this.getWeight(), o.getWeight());
     }
 
-    /***
+    /*
      * toString method for printing String for the user
      * @return
      */

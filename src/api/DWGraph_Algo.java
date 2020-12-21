@@ -1,5 +1,7 @@
 package api;
 
+//import com.google.gson.*;
+
 import com.google.gson.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,7 +12,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.*;
 
-/***
+/*
  * class of group of algorithms that used on this graph
  */
 public class DWGraph_Algo implements dw_graph_algorithms {
@@ -18,7 +20,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
     private HashMap<Integer, Double> dist;
     private HashMap<Integer, Integer> prev;
 
-    /***
+    /*
      * Init the graph on which this set of algorithms operates on.
      * @param g graph to initiate
      */
@@ -40,7 +42,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
 
     }
 
-    /***
+    /*
      *Return the underlying graph of which this class works.
      * @return directed_weighted_graph
      */
@@ -49,7 +51,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return this.graph;
     }
 
-    /***
+    /*
      *deep copy of this weighted graph.
      * @return directed_weighted_graph
      */
@@ -60,7 +62,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return d_w_g;
     }
 
-    /***
+    /*
      *Returns true if and only if (iff) there is a valid path from each node to each
      *      * other node. NOTE: assume directional graph (all n*(n-1) ordered pairs).
      * @return true if the graph is connected by definition or false if not connectes
@@ -89,7 +91,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
 
     }
 
-    /***
+    /*
      * finds the shortest path to the destination using djikstra algorithm compatible to our data structure
      * @param src - start node
      * @param dest - end (target) node
@@ -101,7 +103,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return dist.get(dest);
     }
 
-    /***
+    /*
      *returns the the shortest path between src to dest - as an ordered List of nodes using djikstra algorithm
      * @param src - start node
      * @param dest - end (target) node
@@ -141,7 +143,6 @@ public class DWGraph_Algo implements dw_graph_algorithms {
      * @param file - the file name (may include a relative path).
      * @return boolean value if the save is done properly
      */
-    // TODO: 13/12/2020 fix save
     @Override
     public boolean save(String file) {
         try {
@@ -183,6 +184,7 @@ public class DWGraph_Algo implements dw_graph_algorithms {
 
 
 
+
     /**
      * This method load a graph to this graph algorithm.
      * if the file was successfully loaded - the underlying graph
@@ -191,6 +193,34 @@ public class DWGraph_Algo implements dw_graph_algorithms {
      * @param file - file name
      * @return true - iff the graph was successfully loaded.
      */
+    //  @Override
+//    public boolean load(String file) {
+//        try {
+//            Gson gson = new Gson();
+//            JsonObject jsonOb = new JsonParser().parse(new FileReader(file)).getAsJsonObject();
+//            JsonArray nodesArray = jsonOb.getAsJsonArray("Nodes");
+//            directed_weighted_graph g = new DWGraph_DS();
+//            for (JsonElement node : nodesArray) {
+//                String[] nodePosition = ((JsonObject) node).get("pos").getAsString().split(",");
+//                geo_location location3d = new GeoLocation(Double.parseDouble(nodePosition[0]), Double.parseDouble(nodePosition[1]), Double.parseDouble(nodePosition[2]));
+//                NodeData nd=new NodeData(((JsonObject)node).get("id").getAsInt());
+//                nd.setLocation(location3d);
+//                g.addNode(nd);
+//            }
+//
+//            JsonArray edgesArray = jsonOb.getAsJsonArray("Edges");
+//            for (JsonElement edge : edgesArray){
+//                JsonObject e = (JsonObject)edge;
+//                g.connect(e.get("src").getAsInt(),e.get("dest").getAsInt(),e.get("w").getAsDouble());
+//            }
+//            this.graph = g;
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//        return true;
+//    }
+//
     @Override
     public boolean load(String file) {
         try {
@@ -219,15 +249,17 @@ public class DWGraph_Algo implements dw_graph_algorithms {
         return true;
     }
 
-
-    /***
+    /*
      * Dijkstra's algorithm is a step-by-step process we can use to find the shortest path between two vertices in a weighted graph. This algorithm enables us to find shortest distances and minimum costs
      * @param source -source node
      */
     public void djikstra(int source) {
-
-        PriorityQueue<node_data> q = new PriorityQueue<>();
-
+        PriorityQueue<node_data> q = new PriorityQueue<node_data>(new Comparator<node_data>() {
+            @Override
+            public int compare(node_data o1, node_data o2) {
+                return -Double.compare(dist.get(o2.getKey()),dist.get(o1.getKey()));
+            }
+        });
         for (node_data vertex : this.graph.getV()) {
 
             if (vertex.getKey() != source) {

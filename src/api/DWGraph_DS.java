@@ -109,7 +109,7 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
      */
     @Override
     public void connect(int src, int dest, double w) {
-        if ((src == dest)||(w==0)) {
+        if ((src == dest) || (w == 0)) {
             return;
         }
 
@@ -189,39 +189,19 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
                 Collection<edge_data> edgeColl = this.edges.remove(key).values();
                 edge_counter = edge_counter - edgeColl.size();
             }
-
             for (node_data n : getV()) {
                 if (edges.get(n.getKey()) != null) {
-                   if (edges.get(n.getKey()).get(key)!=null)
-                   {  edges.get(n.getKey()).remove(key);
-                    edge_counter--;
-                    MC++;
-                }}
+                    if (edges.get(n.getKey()).get(key) != null) {
+                        edges.get(n.getKey()).remove(key);
+                        edge_counter--;
+                        MC++;
+                    }
+                }
             }
-
-//            for (int i = 0; i <= NodeData.id; i++) {
-//                if (edges.get(i) != null && edges.get(i).get(key) != null) {
-//                    removeEdge(i, key);
-//                    edge_counter--;
-//                    MC++;
-//                }
-//            }
-
             MC++;
             return nd;
         }
         return null;
-//            if (nodes.get(key)!=null) {
-//
-//                for (node_data node : getV()) {
-//
-//                    removeEdge(key, node.getKey());
-//                }
-//
-//                nodes.remove(key);
-//                return nodes.remove(key);
-//
-//            }
     }
 
     /***
@@ -279,5 +259,16 @@ public class DWGraph_DS implements directed_weighted_graph, java.io.Serializable
 
 
         this.edges = edges2;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (object == null || getClass() != object.getClass()) return false;
+        DWGraph_DS WDSGraph = (DWGraph_DS) object;
+        boolean a = (edgesCounter() == WDSGraph.edgesCounter());
+        boolean b = getV().size()==(WDSGraph.getV().size());
+
+        return (a && b);
     }
 }
